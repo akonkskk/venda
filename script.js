@@ -21,12 +21,51 @@ function mostrarProdutos() {
             <h3>${produto.nome}</h3>
             <img src="imagens/${produto.imagem}" alt="${produto.nome}">
             <p>R$ ${produto.preco.toFixed(2)}</p>
-            <button onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
-            <button onclick="abrirDetalhesProduto(${produto.id})">Detalhes do Produto</button>
+            <button class="botao-carrinho" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
+            <button class="botao-detalhes" onclick="abrirDetalhesProduto(${produto.id})">Detalhes do Produto</button>
         `;
         produtosLista.appendChild(cardProduto);
     });
 }
+// Função para abrir o modal de Carrinho
+function abrirCarrinho() {
+    const modalCarrinho = document.getElementById('modal-carrinho');
+    modalCarrinho.style.display = 'block';
+}
+
+// Função para fechar o modal de Carrinho
+function fecharCarrinho() {
+    const modalCarrinho = document.getElementById('modal-carrinho');
+    modalCarrinho.style.display = 'none';
+}
+
+// Função para atualizar a interface do carrinho
+function atualizarCarrinho() {
+    const carrinhoLista = document.querySelector('.carrinho-lista');
+    carrinhoLista.innerHTML = ''; // Limpar a lista antes de adicionar novamente os itens do carrinho
+
+    if (carrinho.length === 0) {
+        carrinhoLista.innerHTML = '<p>Seu carrinho está vazio.</p>';
+    } else {
+        carrinho.forEach(item => {
+            const cardItem = document.createElement('div');
+            cardItem.classList.add('carrinho-item');
+            cardItem.innerHTML = `
+                <div class="carrinho-item-detalhes">
+                    <img src="imagens/${item.imagem}" alt="${item.nome}">
+                    <h4>${item.nome}</h4>
+                    <p>Quantidade: ${item.quantidade}</p>
+                    <p>Preço unitário: R$ ${item.preco.toFixed(2)}</p>
+                    <p>Total: R$ ${(item.quantidade * item.preco).toFixed(2)}</p>
+                </div>
+            `;
+            carrinhoLista.appendChild(cardItem);
+        });
+    }
+}
+
+// Outras funções do seu código...
+
 
 // Função para adicionar um produto ao carrinho
 function adicionarAoCarrinho(id) {
@@ -119,24 +158,27 @@ function fecharCompra() {
 }
 
 // Função para confirmar a compra (submeter o formulário)
+// Função para confirmar a compra (submeter o formulário)
 function confirmarCompra(event) {
     event.preventDefault(); // Impede o envio do formulário (comportamento padrão)
 
     // Aqui você poderia implementar a lógica para processar a compra, enviar os dados para um servidor, etc.
 
-    alert('Compra confirmada! Dados enviados: ' +
-        '\nNome: ' + document.getElementById('nome').value +
-        '\nEmail: ' + document.getElementById('email').value +
-        '\nEndereço: ' + document.getElementById('endereco').value);
+    // Simulando um processo de compra com setTimeout para demonstração
+    setTimeout(() => {
+        // Exibindo mensagem de confirmação
+        alert('Compra confirmada! Seu pedido chegará em até 30 dias úteis.');
 
-    // Limpar o formulário após a confirmação
-    document.getElementById('form-compra').reset();
+        // Limpar o formulário após a confirmação
+        document.getElementById('form-compra').reset();
 
-    // Fechar o modal após a confirmação
-    fecharCompra();
+        // Fechar o modal após a confirmação
+        fecharCompra();
 
-    // Poderíamos adicionar mais ações aqui, como limpar o carrinho, atualizar o histórico de compras do usuário, etc.
+        // Poderíamos adicionar mais ações aqui, como limpar o carrinho, atualizar o histórico de compras do usuário, etc.
+    }, 1000); // Simulando um tempo de espera de 1 segundo (1000 milissegundos)
 }
+
 
 // Chamar a função para mostrar os produtos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
@@ -150,3 +192,23 @@ cardProduto.innerHTML = `
     <button class="botao-carrinho" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
     <button class="botao-detalhes" onclick="abrirDetalhesProduto(${produto.id})">Detalhes do Produto</button>
 `;
+// Função para confirmar a compra (submeter o formulário)
+// Função para remover um produto do carrinho
+function removerDoCarrinho(id) {
+    // Encontrar o índice do produto no carrinho pelo ID
+    const index = carrinho.findIndex(item => item.id === id);
+
+    if (index !== -1) {
+        // Reduzir a quantidade do produto no carrinho
+        carrinho[index].quantidade--;
+
+        // Se a quantidade do produto no carrinho for zero, remover completamente
+        if (carrinho[index].quantidade === 0) {
+            carrinho.splice(index, 1); // Remove o item do array de carrinho
+        }
+
+        // Atualizar a interface do carrinho após remover o item
+        atualizarCarrinho();
+    }
+}
+

@@ -35,15 +35,15 @@
             <div class="carrinho-lista">
                 <!-- Aqui serão exibidos os itens do carrinho dinamicamente com JavaScript -->
             </div>
-            <button onclick="comprarItens()">Comprar Itens</button>
-        </section>        
+        </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Minha Loja Online. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <nav class="menu">
+        <ul>
+            <li><a href="#" onclick="abrirSobre()">Sobre</a></li>
+            <!-- Outros itens do menu -->
+        </ul>
+    </nav>
+    
 
     <!-- Modal de Produto -->
     <div id="modal-produto" class="modal">
@@ -81,6 +81,29 @@
             </form>
         </div>
     </div>
+    <header>
+        <h1>Minha Loja Virtual</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="abrirCarrinho()">Carrinho</a></li>
+                <li><a href="#" onclick="abrirSobre()">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <div class="produtos-lista"></div>
+    </main>
+    
+    <!-- Modal de Carrinho -->
+    <div id="modal-carrinho" class="modal">
+        <div class="modal-content">
+            <span class="fechar-modal" onclick="fecharCarrinho()">&times;</span>
+            <h2>Seu Carrinho de Compras</h2>
+            <div class="carrinho-lista"></div>
+            <button onclick="abrirCompra()">Finalizar Compra</button>
+        </div>
+    </div>
 
     <!-- Modal de Contato -->
     <div id="modal-contato" class="modal">
@@ -88,13 +111,17 @@
             <span class="fechar-modal" onclick="fecharContato()">&times;</span>
             <h2>Contato</h2>
             <ul>
-                <li><strong>Insta:</strong> @Sony</li>
+                <li><strong>Email:</strong> @Sony</li>
                 <li><strong>Telefone:</strong> (48) 4002-8922</li>
-                <li><strong>WhatsApp:</strong> (48) 0896-4675</li>
+                <li><strong>WhatsApp:</strong> (48) 0896746756</li>
             </ul>
         </div>
     </div>
-
+    <footer>
+        <div class="container">
+            <p>&copy; 2099 Sony. Todos os direitos reservados.</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

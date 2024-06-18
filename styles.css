@@ -6,6 +6,7 @@
 }
 
 body {
+    text-align: center;
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
@@ -180,14 +181,113 @@ footer {
 .botao-carrinho,
 .botao-detalhes {
     background-color: #4CAF50; /* Cor de fundo verde */
-    color: white; /* Cor do texto branco */
+    color: rgb(255, 255, 255); /* Cor do texto branco */
     border: none; /* Remover borda */
     padding: 10px 20px; /* Espaçamento interno */
     cursor: pointer; /* Cursor de ponteiro ao passar por cima */
     margin-right: 10px; /* Margem direita */
 }
 
+.botao-carrinho,
+.botao-detalhes {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.botao-detalhes {
+    background-color: #ffffff; /* Cor verde para o botão "Detalhes do Produto" */
+}
+
 .botao-carrinho:hover,
 .botao-detalhes:hover {
-    background-color: #45a049; /* Cor de fundo verde escuro ao passar por cima */
+    background-color: #929292;
+}
+
+.botao-carrinho:active,
+.botao-detalhes:active {
+    background-color: #0056b3;
+    transform: translateY(1px);
+}
+/* Estilos para o modal de Carrinho */
+#modal-carrinho {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding-top: 50px; /* Ajuste para conteúdo no modal */
+}
+
+#modal-carrinho .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative; /* Permite centralizar o conteúdo */
+}
+
+#modal-carrinho .fechar-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-carrinho h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#modal-carrinho .carrinho-lista {
+    margin-top: 20px;
+}
+
+#modal-carrinho .carrinho-item {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#modal-carrinho button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 20px auto 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#modal-carrinho button:hover {
+    background-color: #45a049;
+}
+/* Estilos para o rodapé fixo */
+footer {
+    position:fixed;
+    bottom: 0;
+    width: 70%;
+    background-color: #6e333300;
+    color: #000000;
+    text-align: center;
+    padding: 10px 0;
+}
+p{
+    text-align: center;
 }
